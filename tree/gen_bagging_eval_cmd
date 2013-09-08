@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+# example
+# bash ~/fbcode/mlclass/gen_bagging_eval_cmd data.train.huge data.test 20,40,80,160 30,50 1..100 > bagging_eval_cmd
+
+project=$1
+datafile=$2
+range_maxleaves=$(eval echo {$3})
+range_data=$(eval echo {$4})
+range_tree=$(eval echo {$5})
+feature=features
+for l in $range_maxleaves; do
+for i in $range_data; do
+for t in $range_tree; do
+echo "echo $l-$i-$t \`~/fbcode/_bin/mlclass/decision_tree_eval --data_file=$datafile --feature_file=$feature --bagging=$t --model_file=model.$project/model.${l}_${i} 2> /tmp/dt-$l-$i-$t | perf -roc\`"
+done
+done
+done
