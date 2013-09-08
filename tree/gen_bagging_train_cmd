@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+# example
+# bash ~/fbcode/mlclass/gen_bagging_train_cmd data.train.huge 20,40,80,160 30,50 1..100 > bagging_train_cmd
+
+project=$1
+mkdir -p model.$project
+range_maxleaves=$(eval echo {$2})
+range_data=$(eval echo {$3})
+range_tree=$(eval echo {$4})
+feature=features
+for l in $range_maxleaves; do
+for i in $range_data; do
+for t in $range_tree; do
+  echo "~/fbcode/_bin/mlclass/decision_tree_train --data_file=$project --max_leaves=$l --feature_file=$feature --subsample100=$i --model_file=model.${project}/model.${l}_${i}_${t} --subsample_seed=$t 2> /tmp/dtt-$l-$i-$t"
+done
+done
+done

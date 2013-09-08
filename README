@@ -1,0 +1,15 @@
+mlcpp
+=====
+INSTALL
+=====
+1. Create "external" symbol link pointing to your local include (usually /usr/local/include).
+2. Create "lib" symbol link pointing to your local lib (usually /usr/local/lib).
+3. Install gflags and glog.
+4. Make.
+
+====
+decision trees
+====
+1. Data files are space-separated with label in the first column.
+2. You need a feature file (--feature_file) to specify name of each feature in data files.
+3. See tree/gen_bagging_train_cmd and tree/gen_bagging_eval_cmd for example command for training and evaluation.
