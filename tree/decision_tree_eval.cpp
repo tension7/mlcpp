@@ -8,8 +8,8 @@
 #include <vector>
 #include <sstream>
 #include <memory>
-#include "external/gflags/gflags.h"
-#include "external/glog/logging.h"
+#include "gflags/gflags.h"
+#include "glog/logging.h"
 #include "common/data.h"
 
 DEFINE_string(data_file, "alldata.test", "");
